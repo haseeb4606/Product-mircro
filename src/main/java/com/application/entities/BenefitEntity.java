@@ -23,7 +23,7 @@ public class BenefitEntity {
 	@Column(name = "unit")
 	private String unit;
 
-	@Column(name = "benefits")
+	@Column(name = "Cost")
 	private String benefits;
 
 	@ManyToOne

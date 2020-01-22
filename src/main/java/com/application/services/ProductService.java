@@ -2,6 +2,7 @@ package com.application.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,31 +15,32 @@ import com.application.repositories.ProductRepository;
 import com.application.utils.Converters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 @Service
 public class ProductService {
-	
+
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private ProductRepository productRepository;
-	
-	public List<ProductDto> getAllProduct(){
-		
+
+	public List<ProductDto> getAllProduct() {
+
 		log.error("Error happended while fetthicing the products");
-		
+
 		List<ProductEntity> pentity = productRepository.findAll();
-		
+
 		List<ProductDto> pdto = new ArrayList<ProductDto>();
-		
-		for(ProductEntity pr: pentity) {
-			
+
+		for (ProductEntity pr : pentity) {
+
 			ProductDto dto = convertProduct(pr);
-			
+
 			pdto.add(dto);
 		}
-		
+
 		return pdto;
-		
+
 	}
 
 	public ProductDto convertProduct(ProductEntity entity) {
@@ -49,7 +51,6 @@ public class ProductService {
 
 			dto.setId(entity.getId());
 			dto.setPlans(entity.getPlans());
-			dto.setUid(entity.getUid());
 
 			List<BenefitDto> bdto = new ArrayList<BenefitDto>();
 
@@ -78,19 +79,16 @@ public class ProductService {
 
 			product.setId(productDto.getId());
 			product.setPlans(productDto.getPlans());
-			product.setUid(productDto.getUid());
+			product.setUid(UUID.randomUUID().toString());
 
-			List<BenefitEntity> benefit = new ArrayList<BenefitEntity>();
+			List<BenefitEntity> benefitEntity = new ArrayList<BenefitEntity>();
+			for (BenefitDto benefitDto : productDto.getBenefitDto()) {
 
-			for (BenefitDto dto : productDto.getBenefitDto()) {
-
-				BenefitEntity entity = Converters.convertToEntity(dto);
-
-				benefit.add(entity);
-
-				product.setBenefit(benefit);
-
+				BenefitEntity bentity = Converters.convertToEntity(benefitDto);
+				bentity.setProduct(product);
+				benefitEntity.add(bentity);
 			}
+			product.setBenefit(benefitEntity);
 		}
 
 		productRepository.save(product);

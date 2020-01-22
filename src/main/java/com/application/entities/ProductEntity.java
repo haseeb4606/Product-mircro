@@ -26,7 +26,7 @@ public class ProductEntity {
 	@Column(name = "uid")
 	private String uid;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<BenefitEntity> benefit;
 
 	public Long getId() {

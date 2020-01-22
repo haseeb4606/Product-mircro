@@ -17,7 +17,7 @@ import com.application.services.ProductService;
 @RequestMapping("/product")
 public class ProductController {
 	
-	Logger log = LoggerFactory.getLogger(this.getClass());
+	 Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private ProductService productService;
