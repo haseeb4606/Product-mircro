@@ -1,5 +1,4 @@
 package com.application.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Benefit_Package")
+@Table(name = "benefits")
 public class BenefitEntity {
 
 	@Id
@@ -23,7 +22,7 @@ public class BenefitEntity {
 	@Column(name = "unit")
 	private String unit;
 
-	@Column(name = "Cost")
+	@Column(name = "cost")
 	private String benefits;
 
 	@ManyToOne

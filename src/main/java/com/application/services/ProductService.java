@@ -19,14 +19,10 @@ import org.slf4j.LoggerFactory;
 @Service
 public class ProductService {
 
-	Logger log = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private ProductRepository productRepository;
 
 	public List<ProductDto> getAllProduct() {
-
-		log.error("Error happended while fetthicing the products");
 
 		List<ProductEntity> pentity = productRepository.findAll();
 
@@ -45,26 +41,26 @@ public class ProductService {
 
 	public ProductDto convertProduct(ProductEntity entity) {
 
-		ProductDto dto = null;
+		ProductDto productDto = null;
 		if (entity != null) {
-			dto = new ProductDto();
+			productDto = new ProductDto();
 
-			dto.setId(entity.getId());
-			dto.setPlans(entity.getPlans());
+			productDto.setId(entity.getId());
+			productDto.setPlans(entity.getPlans());
 
 			List<BenefitDto> bdto = new ArrayList<BenefitDto>();
 
-			for (BenefitEntity bentity : entity.getBenefit()) {
+			for (BenefitEntity benefitEntity : entity.getBenefit()) {
 
-				BenefitDto benefitDto = Converters.convertToDto(bentity);
+				BenefitDto benefitDto = Converters.convertToDto(benefitEntity);
 
 				bdto.add(benefitDto);
 			}
 
-			dto.setBenefitDto(bdto);
+			productDto.setBenefitDto(bdto);
 		}
 
-		return dto;
+		return productDto;
 	}
 
 	// posting data

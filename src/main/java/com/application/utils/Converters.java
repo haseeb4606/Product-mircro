@@ -14,8 +14,8 @@ public class Converters {
 
 			dto.setId(entity.getId());
 			dto.setDescription(entity.getDescription());
-			dto.setUnit(dto.getUnit());
 			dto.setBenefits(entity.getBenefits());
+			dto.setUnit(entity.getUnit());
 			
 		}
 		return dto;

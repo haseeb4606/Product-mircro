@@ -1,17 +1,18 @@
-create table products (
-id bigint not null auto_increment,
-Plans varchar(50) not null unique,
+create database insurance;
+
+create table products(
+id bigint auto_increment not null,
+plans varchar(45),
 uid varchar(100),
 primary key(id)
 );
 
-create table Benefit_Package (
+create table benefits(
 id bigint auto_increment not null,
-description varchar(70) not null unique,
-unit varchar(20) not null, 
-benefits varchar(100) not null,
-product_id bigint not null,
+description varchar(75),
+unit varchar (20),
+cost varchar (50),
+product_id bigint,
 primary key(id),
-foreign key(product_id)references products(id)
+foreign key(product_id) references products(id)
 );
-alter TABLE Benefit_Package change column benefits Cost varchar (100) not null;

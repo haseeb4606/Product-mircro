@@ -17,7 +17,7 @@ import com.application.services.ProductService;
 @RequestMapping("/product")
 public class ProductController {
 	
-	 Logger log = LoggerFactory.getLogger(this.getClass());
+
 
 	@Autowired
 	private ProductService productService;
@@ -31,7 +31,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public List<ProductDto> getAllProduct() {
-		log.info(("User has entered the start endpoint"));
+		
 
 		return productService.getAllProduct();
 	}
